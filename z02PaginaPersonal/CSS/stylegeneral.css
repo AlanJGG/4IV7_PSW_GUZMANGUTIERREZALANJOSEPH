@@ -1,0 +1,109 @@
+*{
+    padding: 0;
+    margin: 0;
+    color:  #805050;
+    text-align: center;
+}
+
+body{
+    background-image: url("recursos/img3.jpg");
+    background-size: cover;
+}
+
+header{
+    height: 220px;
+    width: 99%;
+    text-align: center;
+    background-image: url("recursos/img1.png");
+    background-size: auto;
+    border: 7px solid rgb(226, 171, 171);
+}
+
+.boton{
+    height: 8vh;
+    width: 25vh;
+    border: 1px solid rgb(197, 104, 104);
+}
+
+.boton:hover{
+    color: #d8aeae;
+    border: 2px solid rgb(231, 105, 105);
+    text-decoration-color: black;
+    cursor: pointer;
+
+}
+
+section{
+    text-align: center;
+    margin: 5vh;
+}
+
+@keyframes rotacion{
+    from{     
+        transform: rotate(0deg);
+    }
+ 
+    to{
+        transform: rotate(361deg);
+    }
+ }
+
+ @keyframes rotacionext{
+    from{     
+        transform: rotate(0deg);
+        margin-left: 0%;
+        margin-top: 0%;
+    }
+ 
+    to{
+        transform: rotate(361deg);
+        margin-left: 100%;
+        margin-top:100%;
+    }
+ }
+
+ #video{
+    margin: 5vh;
+    border: 10px solid rgb(179, 68, 68);
+    display: inline-block;
+}
+
+#video:hover{
+    border: 10px solid rgb(102, 48, 48);
+    animation-name: rotacion;
+    animation-duration: 1s;
+}
+
+ #img4{
+    text-align: right;
+    align-self: flex-end;
+    margin: 2vh;
+    height: 40px;
+    width: 40px;
+    animation-name: rotacion;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+ }
+
+ #mapa{
+     margin:10px;
+     border: 15px solid rgb(231, 120, 120);
+     display: inline-block;
+ }
+
+ .imagenes{
+     height: 500px;
+     width: 350px;
+ }
+
+ .imagenes:hover{
+     border: 2px solid rgb(211, 111, 111);
+ }
+  #img8:hover{
+    border: 15px solid rgb(187, 255, 0);
+    cursor: pointer;
+    animation-name: rotacionext;
+    animation-duration: 250ms;
+    animation-iteration-count: infinite;
+  }
+    
