@@ -1,10 +1,28 @@
-
-function calcular(formulario){
+function calcular(){
 
     var valorAutomovil = formulario.valor.value
     var cuotaI = formulario.cuotaI.value
     var periodo = formulario.periodo.value;
     const interes = 3.96;
+
+    let tabla = "<table><tr><td>Precio del automóvil</td><td>Cuota inicial</td><td>Plazo</td><td>Interés</td><td>Cuota mensual</td><td>Precio final</td></tr>";
+
+    tabla += "<tr><td>$"+valorAutomovil+"</td>"
+    tabla += "<td>$"+cuotaI+"</td>"
+    tabla += "<td>"+periodo+" meses</td>"
+    tabla += "<td>"+interes+"%</td>"
+    tabla += "<td>$"+((((valorAutomovil-cuotaI)/periodo)*interes) + ((valorAutomovil-cuotaI)/periodo))+"</td>"
+    tabla += "<td>$"+(((((valorAutomovil-cuotaI)/periodo)*interes) + ((valorAutomovil-cuotaI)/periodo))*periodo)+"</td><tr>"
+
+    tabla += "</table>";
+    tabla
+    document.getElementById('tablaResultados').innerHTML = tabla;
+}
+
+function validar(formulario){
+
+    var valorAutomovil = formulario.valor.value
+    var cuotaI = formulario.cuotaI.value
 
     if(valorAutomovil < 100000 && valorAutomovil > 1000000){
         alert("El costo del coche debe estar entre $100,000 y $1,000,000")
@@ -65,16 +83,6 @@ function calcular(formulario){
         return false;
     }
 
-    let tabla = "<table><tr><td>Precio del automóvil</td><td>Cuota inicial</td><td>Plazo</td><td>Interés</td><td>Cuota mensual</td><td>Precio final</td></tr>";
-
-        tabla += "<tr><td>$"+valorAutomovil+"</td>"
-        tabla += "<td>$"+cuotaI+"</td>"
-        tabla += "<td>"+periodo+" meses</td>"
-        tabla += "<td>"+interes+"%</td>"
-        tabla += "<td>$"+((((valorAutomovil-cuotaI)/periodo)*interes) + ((valorAutomovil-cuotaI)/periodo))+"</td>"
-        tabla += "<td>$"+(((((valorAutomovil-cuotaI)/periodo)*interes) + ((valorAutomovil-cuotaI)/periodo))*periodo)+"</td><tr>"
-
-        tabla += "</table>";
-        document.getElementById('tablaResultados').innerHTML = tabla;
+   
 
 }

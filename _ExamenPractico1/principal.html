@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CSS/style.css">
-    <script languaje="javascript" src="JS/script.js"></script>
+    <script src="JS/script.js"></script>
     <title>Examen práctico</title>
 </head>
 <body>
@@ -16,7 +16,7 @@
         <hr class="hrLine">
         <section>
             <div>
-                <form method="post" name="formulario" onsubmit="return calcular(this)">
+                <form method="post" name="formulario" onsubmit="return validar(this)">
                     <label>Precio del automóvil:</label>
                     <input type="number" name="valor" id="valor">
                     <br><br>
@@ -31,14 +31,19 @@
                     <input type="radio" name="periodo" value="12" id="12meses"/> 12 meses  <br>
                     <input type="radio" name="periodo" value="18" id="18meses"/> 18 meses  <br>
                     <br>
-                    <input type="submit" name="enviar" value="Calcular">
+                    <input type="submit" name="enviar" value="Calcular" onclick="calcular()">
                     <input type="reset" name="borar" value="Borrar datos">
 
                     <table id="tablaResultados">
-                        
+
                     </table>
                 </form>
-            </div>  
+            </div> 
+            <div id="espacioTabla">
+                <table id="tablaResultados">
+
+                </table>
+            </div>
         </section>
         <footer>
 
