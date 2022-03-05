@@ -4,6 +4,10 @@
     color:  #000000;
 }
 
+body{
+    background-color: rgb(197, 147, 243);
+}
+
 .hrLine{
     color: #000000;
 }
@@ -11,10 +15,23 @@
 header{
     text-align: center;
     margin: 5vh;
+    background-color: blueviolet;
+    
 }
 
 section{
     margin-top: 4vh;
     margin-inline: 10vh;
     text-align: justify;
+}
+
+#espacioTabla{
+    text-align: center;
+    margin: 5vh;
+
+}
+
+footer{
+    margin: 3vh;
+    background-color: rgb(99, 41, 153);
 }
