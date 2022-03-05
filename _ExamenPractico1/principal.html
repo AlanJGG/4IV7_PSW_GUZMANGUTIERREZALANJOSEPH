@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/style.css">
+    <script languaje="javascript" src="JS/script.js"></script>
+    <title>Examen práctico</title>
+</head>
+<body>
+    <div class="main-container">
+        <header>
+            <h1>Calculador de interés compuesto</h1>
+        </header>
+        <hr class="hrLine">
+        <section>
+            <div>
+                <form method="post" name="formulario" onsubmit="return calcular(this)">
+                    <label>Precio del automóvil:</label>
+                    <input type="number" name="valor" id="valor">
+                    <br><br>
+                    <label>Cuota inicial:</label>
+                    <input type="number" name="cuotaI" id="cuotaI">
+                    <br><br>
+                    <label>Elija el plazo a pagarlo:</label>
+                    <br><br>
+                    <input type="radio" name="periodo" value="3" id="3meses"/> 3 meses     <br>
+                    <input type="radio" name="periodo" value="6" id="6meses"/> 6 meses     <br>
+                    <input type="radio" name="periodo" value="9" id="9meses"/> 9 meses     <br>
+                    <input type="radio" name="periodo" value="12" id="12meses"/> 12 meses  <br>
+                    <input type="radio" name="periodo" value="18" id="18meses"/> 18 meses  <br>
+                    <br>
+                    <input type="submit" name="enviar" value="Calcular">
+                    <input type="reset" name="borar" value="Borrar datos">
+
+                    <table id="tablaResultados">
+
+                    </table>
+                </form>
+            </div>  
+        </section>
+        <footer>
+
+        </footer>
+
+    </div>
+    
+</body>
+</html>
