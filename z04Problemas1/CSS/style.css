@@ -1,0 +1,19 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+header{
+    text-align: center ;
+}
+section{
+    margin: 3rem;
+}
+.main-container{
+    width: 100%;
+    padding: 1rem;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
