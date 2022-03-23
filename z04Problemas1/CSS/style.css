@@ -1,19 +1,9 @@
-*{
-    margin: 0px;
-    padding: 0px;
+body{
+    background-color: rgb(114, 167, 162);
 }
 header{
     text-align: center ;
 }
 section{
     margin: 3rem;
-}
-.main-container{
-    width: 100%;
-    padding: 1rem;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column;
 }

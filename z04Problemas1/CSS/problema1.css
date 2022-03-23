@@ -9,6 +9,7 @@ body{
 }
 header{
     text-align: center ;
+    size: 5rem;
 }
 section{
     margin: 3rem;
