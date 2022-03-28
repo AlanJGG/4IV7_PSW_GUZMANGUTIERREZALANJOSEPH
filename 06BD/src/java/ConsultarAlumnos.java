@@ -42,6 +42,8 @@ public class ConsultarAlumnos extends HttpServlet {
         try{
             //lo primero es conectarnos
             Class.forName("com.mysql.jdbc.Driver");
+            
+            URL= "jdbc:mysql://localhost/alumnos";
             con = DriverManager.getConnection(URL,userName, password);
             set = con.createStatement();
             
