@@ -6,7 +6,7 @@
     </servlet>
     <servlet>
         <servlet-name>java</servlet-name>
-        <servlet-class>RegistrarAlumnos.java</servlet-class>
+        <servlet-class>RegistrarAlumnos</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RegistrarAlumnos</servlet-name>
