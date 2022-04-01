@@ -6,11 +6,9 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -22,17 +20,24 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Alumno
  */
-public class RegistrarAlumnos extends HttpServlet {
+public class RegistrarAlumno extends HttpServlet {
+
     private Connection con;
     private Statement set;
     private ResultSet rs;
-    
-    //definir el constructor
-    
-    public void init(ServletConfig cfg) throws ServletException{
-        //Aquí  se define como se conecta con la base de datos
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+     public void init(ServletConfig cfg) throws ServletException{
+        //aqui es donde se define como se conecta a la BD
         String URL = "jdbc:mysql:3306//localhost/alumnos";
-                //tipo de conector:manejadorbd:puertomanejador//IP/nombrebd
+                    //tipo de conector:manejadorbd:puerto//IP/nombrebd
         String userName = "root";
         String password = "n0m3l0";
         
@@ -40,41 +45,27 @@ public class RegistrarAlumnos extends HttpServlet {
             //lo primero es conectarnos
             Class.forName("com.mysql.jdbc.Driver");
             
-            URL= "jdbc:mysql://localhost/alumnos";
-            con = DriverManager.getConnection(URL,userName, password);
+            URL = "jdbc:mysql://localhost/alumnos";
+            
+            con = DriverManager.getConnection(URL, userName, password);
             set = con.createStatement();
             
-            System.out.println("Se conectó a la BD");
+            System.out.println("Se conecto a la BD *w* ");
         }catch(Exception e){
-            System.out.println("No se conectó");
+            
+            System.out.println("No se conecto, solo juguito contigo");
             System.out.println(e.getMessage());
             System.out.println(e.getStackTrace());
+        
         }
-    }
-     
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet RegistrarAlumnos</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet RegistrarAlumnos at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+    
     }
     
-    public void destroy(){
-        try{
-            con.close();
-        }catch(Exception e){
-            super.destroy();
-        }
+    
+    
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -89,7 +80,7 @@ public class RegistrarAlumnos extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        processRequest(request, response);
     }
 
     /**
@@ -109,39 +100,46 @@ public class RegistrarAlumnos extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet RegistrarAlumnos</title>");            
+            out.println("<title>Registro de un Nuevo Alumno</title>");            
             out.println("</head>");
             out.println("<body>");
             
-            out.println("</body>");
-            out.println("</html>");
-        try{
-            int bol;
-            String nom, appat, apmat, tel;
+            try{
+                //vamos a registrar en la bd (insert)
+                int bol;
+                String nom, appat, apmat, tel;
+                
+                //es obtener los parametros
+                nom = request.getParameter("nombre");
+                appat = request.getParameter("appat");
+                apmat = request.getParameter("apmat");
+                tel = request.getParameter("tel");
+                bol = Integer.parseInt(request.getParameter("boleta"));
+                
+                //querry
+                String q = "insert into alumnobatiz "
+                        + "values ("+bol+", '"+nom+"', '"+appat+"', '"+apmat+"', '"+tel+"')";
+                
+                //se ejecuta la sentencia
+                
+                set.executeUpdate(q);
+                out.println("<h1>Registro Exitoso</h1>");
+                System.out.println("Se registro un nuevo alumno");
+                
+                
+                
             
-            nom = request.getParameter("nombre");
-            appat = request.getParameter("appat");
-            apmat = request.getParameter("apmat");
-            tel = request.getParameter("telefono");
-            bol = Integer.parseInt(request.getParameter("boleta"));
-            
-            //querry
-            String q = "insert into alumnobatiz " +
-                    "values ("+bol+", '"+nom+"', '"+appat+"', '"+apmat+"', '"+tel+"')";
-            
-            set.executeUpdate(q);
-            out.println("<h1>Registro exitoso</h1>");
-            System.out.println("Registro Exitoso");
-            }
-        
-            catch (SQLException e) {
+            }catch(Exception e){
+                
                 System.out.println("Error al registrar en la tabla");
+                out.println("<h1>Registro No Exitoso</h1>");
                 System.out.println(e.getMessage());
                 System.out.println(e.getStackTrace());
-                out.println("<h1>Registro No Exitoso");
-                
             }
-            out.println("<a href='ConsultarAlumnos'>Consultar Alumnos</a>");
+            
+            
+            
+            out.println("<a href='ConsultarAlumnos' >Consultar Alumnos</a>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -156,5 +154,13 @@ public class RegistrarAlumnos extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
+    public void destroy(){
+        try{
+            con.close();
+        }catch(Exception e){
+            super.destroy();
+        }
+    }
 
 }

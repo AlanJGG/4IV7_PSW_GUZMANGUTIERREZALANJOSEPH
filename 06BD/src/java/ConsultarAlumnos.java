@@ -11,9 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java.sql. *;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import java.sql.*;
 import javax.servlet.ServletConfig;
 /**
  *
@@ -21,21 +20,28 @@ import javax.servlet.ServletConfig;
  */
 public class ConsultarAlumnos extends HttpServlet {
 
-    /* Para que se pueda conectar con la BD es necesario un constructor, se necesitan 3 tipos de objetos para poder establecer la conexión.
-       Connection que establece la conexión con el servidor de la BD
-       Statement que sirve para poder definir las sentencias de manipulacion y definicion de datos (create, update, insert, delete)
-       ResultSet que sirve para poder crear querrys*/
+    
+  /*
+    Para que se pueda conectar con la BD es necesario un contructor
+    Se necesitan 3 tipos de objetos para poder establecer la conexion
+    
+    Connection  que establece la conexion con el servidor BD
+    Statement que sirve para poder definir las sentencias de
+                manipulacion y definicion de datos (create, update, 
+                insert, delete)
+    ResultSet que sirve para poder crear querrys 
+    */
     
     private Connection con;
     private Statement set;
     private ResultSet rs;
     
-    //definir el constructor
+    //defino el constructor de la clase
     
     public void init(ServletConfig cfg) throws ServletException{
-        //Aquí  se define como se conecta con la base de datos
+        //aqui es donde se define como se conecta a la BD
         String URL = "jdbc:mysql:3306//localhost/alumnos";
-                //tipo de conector:manejadorbd:puertomanejador//IP/nombrebd
+                    //tipo de conector:manejadorbd:puerto//IP/nombrebd
         String userName = "root";
         String password = "n0m3l0";
         
@@ -43,17 +49,30 @@ public class ConsultarAlumnos extends HttpServlet {
             //lo primero es conectarnos
             Class.forName("com.mysql.jdbc.Driver");
             
-            URL= "jdbc:mysql://localhost/alumnos";
-            con = DriverManager.getConnection(URL,userName, password);
+            URL = "jdbc:mysql://localhost/alumnos";
+            
+            con = DriverManager.getConnection(URL, userName, password);
             set = con.createStatement();
             
-            System.out.println("Se conectó a la BD");
+            System.out.println("Se conecto a la BD *w* ");
         }catch(Exception e){
-            System.out.println("No se conectó");
+            
+            System.out.println("No se conecto, solo juguito contigo");
             System.out.println(e.getMessage());
             System.out.println(e.getStackTrace());
+        
         }
+    
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
@@ -77,46 +96,55 @@ public class ConsultarAlumnos extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Lista de alumnos de batiz</title>");
+            out.println("<title>Lista de Alumnos de Batiz</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Tabla de la lista de Alumnos</h1>"
+            out.println("<h1>Tabla de la Lista de Alumnos</h1>"
                     + "<table border=2>"
-                    + "<tr>"
-                        + "<th>Boleta</th>"
-                        + "<th>Nombre del Alumno</th>"
-                        + "<th>Telefono</th>"
-                    + "</tr>");
-        try{
-            int boleta;
-            String nombre, apellidopaterno, apellidomaterno, tel;
-            
-            String q = "select * from alumnobatiz";
-            
-            set = con.createStatement();
-            rs = set.executeQuery(q);
-            
-            while(rs.next()){
-                boleta = rs.getInt("boleta");
-                nombre = rs.getString("nombre");
-                apellidopaterno = rs.getString("appat");
-                apellidomaterno = rs.getString("apmat");
-                tel = rs.getString("telefono");
+                        + "<tr>"
+                            + "<th>Boleta</th>"
+                            + "<th>Nombre del Alumno</th>"
+                            + "<th>Telefono</th>"
+                        + "</tr>");
+            try{
+                int boleta;
+                String nombre, apellidopaterno, apellidomaterno, tel;
                 
-                out.println("<tr>"
-                            +"<td>"+boleta+"</td>"
-                            +"<td>"+nombre+" "+apellidopaterno+" "+apellidomaterno+"</td>"
-                            +"<td>"+tel+"</td>");
+                //establecer la querry
+                String q = "select * from alumnobatiz";
                 
+                set = con.createStatement();
+                rs = set.executeQuery(q);
+                
+                while(rs.next()){
+                    boleta = rs.getInt("boleta");
+                    nombre = rs.getString("nombre");
+                    apellidopaterno = rs.getString("appat");
+                    apellidomaterno = rs.getString("apmat");
+                    tel = rs.getString("telefono");
+                    
+                    out.println("<tr>"
+                                + "<td>"+boleta+"</td>"
+                                + "<td>"+nombre+" "+apellidopaterno+" "
+                                +apellidomaterno+"</td>"
+                                + "<td>"+tel+"</td>"
+                            + "</tr>");
+                }
+                
+                //hay que cerrar conexiones
                 rs.close();
                 set.close();
+            
+            }catch(Exception e){
+                System.out.println("Error al conectar a la tabla");
+                System.out.println(e.getMessage());
+                System.out.println(e.getStackTrace());
+            
             }
-        
-        }   catch (SQLException ex) {
-                System.out.println("Error al conectar");
-                System.out.println();
-                System.out.println();
-            }
+            
+            
+            out.println("</table>");
+            out.println("<a href='index.html' >Pagina principal</a>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -133,6 +161,7 @@ public class ConsultarAlumnos extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
     }
 
     /**
@@ -144,7 +173,8 @@ public class ConsultarAlumnos extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
+    
+    //creamos el destructor
     public void destroy(){
         try{
             con.close();
@@ -152,4 +182,5 @@ public class ConsultarAlumnos extends HttpServlet {
             super.destroy();
         }
     }
+
 }

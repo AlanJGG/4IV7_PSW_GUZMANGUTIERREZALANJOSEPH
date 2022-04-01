@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
 import java.io.IOException;
@@ -18,9 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Alumno
+ * @author Alan Guzmán
  */
-public class EliminarAlumno extends HttpServlet {
+public class ModificarAlumno extends HttpServlet {
 
     private Connection con;
     private Statement set;
@@ -61,12 +60,12 @@ public class EliminarAlumno extends HttpServlet {
         }
     
     }
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
     }
-
+    
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -79,44 +78,7 @@ public class EliminarAlumno extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Dar de Baja Alumno</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            
-            try{
-                //vamos a eliminar un alumno por su boleta
-                //delete from alumnobatiz where boleta = ?
-                
-                int bol = Integer.parseInt(request.getParameter("eliminarboleta"));
-                
-                String q = "delete from alumnobatiz where boleta ="+bol;
-                
-                set.executeUpdate(q);
-                
-                out.println("<h1>Alumno Eliminado de la BD</h1>");
-                
-                System.out.println("Se eliminno el registro");
-            
-            }catch(Exception e){
-                
-                System.out.println("No se pudo eliminar el registro");
-                System.out.println(e.getMessage());
-                System.out.println(e.getStackTrace());
-                out.println("<h1>No se pudo eliminar el Alumno</h1>");
-            
-            }
-            
-            
-            out.println("<a href='ConsultarAlumnos' >Consultar Alumnos</a>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -130,8 +92,68 @@ public class EliminarAlumno extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
+            response.setContentType("text/html;charset=UTF-8");
+            try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Modificación de un Alumno</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            
+            try{
+                //vamos a registrar en la bd (insert)
+                int bol;
+                String nom, appat, apmat, tel;
+                
+                //es obtener los parametros
+                nom = request.getParameter("nombre");
+                appat = request.getParameter("appat");
+                apmat = request.getParameter("apmat");
+                tel = request.getParameter("tel");
+                bol = Integer.parseInt(request.getParameter("boleta"));
+                
+                //querry
+                if(request.getParameter("boleta") != ""){
+                    if(nom != ""){
+                        String q = "update alumnobatiz set nombre='"+ nom + "' where boleta="+bol; 
+                        set.executeUpdate(q);
+                        System.out.println("Se modificó el nombre del alumno");
+                    } else if(appat != ""){
+                        String q = "update alumnobatiz set appat='"+ appat + "' where boleta="+bol;
+                        set.executeUpdate(q);
+                        System.out.println("Se modificó el apellido paterno del alumno");
+                    }else if(apmat != ""){
+                        String q = "update alumnobatiz set apmat='"+ apmat + "' where boleta="+bol;
+                        set.executeUpdate(q);
+                        System.out.println("Se modificó el apellido materno del alumno");
+                    }else if(tel != ""){
+                        String q = "update alumnobatiz set tel='"+ tel + "' where boleta="+bol;
+                        set.executeUpdate(q);
+                        System.out.println("Se modificó el teléfono del alumno");
+                    }else{
+                    out.println("<h1>No ingresó ningún dato</h1>");
+                    }
+                } else{
+                    out.println("<h1>No ingresó ningun número de boleta</h1>");
+                }
+            }catch(Exception e){
+                
+                System.out.println("Error al modificar");
+                out.println("<h1>Modificación No Exitosa</h1>");
+                System.out.println(e.getMessage());
+                System.out.println(e.getStackTrace());
+            }
+            
+            
+            
+            out.println("<a href='ConsultarAlumnos' >Consultar Alumnos</a>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+        }
+    
 
     /**
      * Returns a short description of the servlet.
@@ -142,13 +164,12 @@ public class EliminarAlumno extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
-    public void destroy(){
+
+public void destroy(){
         try{
             con.close();
         }catch(Exception e){
             super.destroy();
         }
     }
-
 }

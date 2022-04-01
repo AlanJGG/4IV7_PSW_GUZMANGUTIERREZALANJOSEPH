@@ -9,6 +9,7 @@ and open the template in the editor.
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../CSS/style.css">
     </head>
     <body>
         <div class="container">
@@ -16,44 +17,80 @@ and open the template in the editor.
             <br>
             <a href="ConsultarAlumnos">Ver lista de Alumno de Batiz</a>
         </div>
-        <div>
+        <div class="registro" >
             <br>
             <h1>Registrar Nuevo Alumno de Batiz</h1>
             <br>
-            <form method="post" name="registro" action="RegistrarAlumno"></form>
-            <label>Nombre del alumno</label>
-            <br>
-            <input type="text" name="nombre">
-            <br>
-            <label>Apellido Paterno</label>
-            <br>
-            <input type="text" name="appat">
-            <br>
-            <label>Apellido Materno</label>
-            <br>
-            <input type="text" name="apmat">
-            <br>
-            <label>Boleta</label>
-            <br>
-            <input type="text" name="boleta">
-            <br>
-            <label>Telefono</label>
-            <br>
-            <input type="text" name="tel">
-            <br>
-            <input type="submit" value="Registrar Nuevo Alumno" name="enviar">
-            <br>
-            <input type="reset" value="Resetear" name="borrar">
+            <form method="post" name="registro" action="RegistrarAlumno" onsubmit="validar1(this)" >  
+                <label> Nombre del alumno </label>
+                <br>
+                <input type="text" name="nombre"  >
+                <br>
+                <label> Apellido Paterno </label>
+                <br>
+                <input type="text" name="appat"  >
+                <br>
+                <label> Apellido Materno </label>
+                <br>
+                <input type="text" name="apmat"  >
+                <br>
+                <label> Boleta </label>
+                <br>
+                <input type="text" name="boleta" >
+                <br>
+                <label> Telefono </label>
+                <br>
+                <input type="text" name="tel"  >
+                <br>
+                <input  class="boton" type="submit" value="Registrar Nuevo Alumno" name="enviar" >
+                <br>
+                <input class="boton" type="reset" value="Borrar Datos" >
+            </form>
         </div>
-        <div class="eliminar">
-            <form method="get" name="eliminar" action="EliminarAlumno">
+        <div class="eliminar" >
+            <br>
+            <h1>Eliminar Alumno</h1>
+            <br>
+            <form method="get" name="eliminar" action="EliminarAlumno" onsubmit="validar3(this)" >
                 <br>
-                <label>Ingrese la Boleta del Alumno que desea dar de Baha</label>
+                <label>Ingrese la Boleta del Alumno que desea dar de Baja</label>
                 <br>
-                <input type="text" name="eliminarboleta">
+                <input type="text" name="eliminarboleta"  >
                 <br>
-                <input type="submit" value="Alumno Eliminado">
+                <input class="boton" type="submit" value="Alumno Eliminado" >
+            </form>
+        </div>
+        <div class="modificar">
+            <br>
+            <h1>Modificar Alumno</h1>
+            <br>
+            <h2>Ingrese los datos que quiera modificar de cualquier alumno existente en la base.</h2>
+            <form method="post" name="modificar" action="ModificarAlumno" onsubmit="validar2(this)">
+                <label> Boleta (obligatorio)</label>
+                <br>
+                <input type="text" name="boleta"  >
+                <br>
+                <label> Nombre del alumno </label>
+                <br>
+                <input type="text" name="nombre"  >
+                <br>
+                <label> Apellido Paterno </label>
+                <br>
+                <input type="text" name="appat"  >
+                <br>
+                <label> Apellido Materno </label>
+                <br>
+                <input type="text" name="apmat"  >
+                <br>
+                <label> Telefono </label>
+                <br>
+                <input type="text" name="tel"  >
+                <br>
+                <input class="boton" type="submit" value="Modificar datos" name="enviar" >
+                <br>
+                <input class="boton" type="reset" value="Borrar Datos" >
             </form>
         </div>
     </body>
+    <script language="javascript" src="../JS/validacion.js"></script>
 </html>
