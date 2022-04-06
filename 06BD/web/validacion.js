@@ -23,11 +23,13 @@ function validar2(formulario){
     apmat = formulario.apmat.value;
     tel = formulario.tel.value;
     boleta = parseInt(formulario.boleta.value);
+    boletaNuev = parseInt(formulario.boletaNuev.value);
 
     validarNumeros(formulario.boleta.value, "la boleta")
     if(formulario.boleta.value == "" || boleta > 0 || formulario.boleta.value.length > 10 ){
         alert("Ingrese la boleta y asegurese de que esta no sea negativa y tenga entre 1 y 10 carácteres.");
     } 
+    validarNumeros(boletaNuev, " la boleta nueva");
     validarLetras(nombre,"nombre");
     validarLetras(appat,"el apellido paterno");
     validarLetras(appat,"el apellido materno");
@@ -104,3 +106,5 @@ function validarNumeros(campo, nombreCampo){
         return false;
     }
 }
+
+

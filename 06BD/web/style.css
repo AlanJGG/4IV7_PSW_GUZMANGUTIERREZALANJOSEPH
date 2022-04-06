@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+    color: black;
+}
+
+body{
+    background-color: brown;
+}
+
+.container{
+    margin: 1rem;
+    padding: 1rem;
+    text-align: center;
+}
+.registro, .eliminar, .modificar{
+    margin: 1rem;
+    padding: 1rem;
+    border: 2px solid rgb(54, 24, 24);
+    border-radius: 5px;
+
+}
+
+.boton{
+    margin: 4px;
+    padding: 1px;
+    border: 2px solid rgba(63, 177, 129, 0.527);
+    border-radius: 5px;
+    color: rgb(197, 25, 54);
+}
+

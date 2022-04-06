@@ -54,10 +54,10 @@ public class ConsultarAlumnos extends HttpServlet {
             con = DriverManager.getConnection(URL, userName, password);
             set = con.createStatement();
             
-            System.out.println("Se conecto a la BD *w* ");
+            System.out.println("Se conecto a la BD");
         }catch(Exception e){
             
-            System.out.println("No se conecto, solo juguito contigo");
+            System.out.println("No se conecto");
             System.out.println(e.getMessage());
             System.out.println(e.getStackTrace());
         
@@ -150,18 +150,9 @@ public class ConsultarAlumnos extends HttpServlet {
         }
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        
+            throws ServletException, IOException {   
     }
 
     /**

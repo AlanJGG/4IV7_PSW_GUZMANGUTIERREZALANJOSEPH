@@ -104,7 +104,7 @@ public class ModificarAlumno extends HttpServlet {
             
             try{
                 //vamos a registrar en la bd (insert)
-                int bol;
+                int bol, bolNuev;
                 String nom, appat, apmat, tel;
                 
                 //es obtener los parametros
@@ -112,11 +112,16 @@ public class ModificarAlumno extends HttpServlet {
                 appat = request.getParameter("appat");
                 apmat = request.getParameter("apmat");
                 tel = request.getParameter("tel");
+                bolNuev = Integer.parseInt(request.getParameter("boletaNuev"));
                 bol = Integer.parseInt(request.getParameter("boleta"));
                 
                 //querry
-                if(request.getParameter("boleta") != ""){
-                    if(nom != ""){
+                if(request.getParameter("boleta") != "" && bol > 0){
+                    if(request.getParameter("boletaNuev") != ""){
+                        String q = "update alumnobatiz set boleta='"+ bolNuev + "' where boleta="+bol; 
+                        set.executeUpdate(q);
+                        System.out.println("Se modificó la bolta del alumno");
+                    } else if(nom != ""){
                         String q = "update alumnobatiz set nombre='"+ nom + "' where boleta="+bol; 
                         set.executeUpdate(q);
                         System.out.println("Se modificó el nombre del alumno");
