@@ -1,9 +1,37 @@
-/*
-Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
-*/
-/* 
-    Created on : 28 abr. 2022, 10:12:45
-    Author     : Alan Guzmán
-*/
+*{
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+body
+{
+    margin: 0;
+    padding: 0;
+    background-color: #ecd4c6;
+}
+
+.main-container
+{
+    width: 100%;
+    padding: 2rem;
+    margin: 0.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
+
+button.formulario-button
+{
+    border: 2px;
+    background-color: #e3b155;
+    color: #27242a;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 0.8rem;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(126, 126, 126, 0.24) 0 1px 2px rgba(0, 0, 0, 0.57);
+}
 
