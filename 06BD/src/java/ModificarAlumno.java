@@ -116,7 +116,7 @@ public class ModificarAlumno extends HttpServlet {
                 bol = Integer.parseInt(request.getParameter("boleta"));
                 
                 //querry
-                if(request.getParameter("boleta") != "" && bol > 0){
+                if(request.getParameter("boleta") != "" ){
                     if(request.getParameter("boletaNuev") != ""){
                         String q = "update alumnobatiz set boleta='"+ bolNuev + "' where boleta="+bol; 
                         set.executeUpdate(q);
